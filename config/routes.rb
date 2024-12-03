@@ -10,7 +10,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :users, only: [:index, :show, :update]
+
+  patch 'details', to: 'users#update'
+
+  resources :users, only: [:index, :show ]
 
   resources :posts, only: [:create, :show, :index]
 end
