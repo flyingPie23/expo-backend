@@ -18,8 +18,10 @@ User.destroy_all
 
 puts "Creating users and their posts"
 
+profile_picture = URI.parse("https://institutcommotions.com/wp-content/uploads/2018/05/blank-profile-picture-973460_960_720-1.png").open
+
 10.times do
-  User.create(
+  user =User.create(
     email: Faker::Internet.email,
     password: "123456",
 
@@ -27,6 +29,9 @@ puts "Creating users and their posts"
     bio: Faker::Quote.yoda,
     birthday: Faker::Date.between(from: '1900-01-1', to: '2004-12-31')
   )
+
+  user.photo.attach(io: profile_picture, filename: "nes.png", content_type: "image/png")
+  user.save
 
   puts "#{User.last.name} has been created"
 end
