@@ -5,4 +5,8 @@ json.array! @posts do |post|
     json.extract! post.user, :id, :name
   end
 
+  json.photos post.photos do |photo|
+    json.photo_key photo.blob.key
+  end
+
 end

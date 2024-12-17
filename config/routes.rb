@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   patch 'details', to: 'users#update'
 
+  get 'test', to: 'users#test'
+
   resources :users, only: [:index, :show ]
 
   resources :posts, only: [:create, :show, :index] do

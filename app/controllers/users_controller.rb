@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :set_user, only: %i[ show ]
+  before_action :set_user, only: %i[show]
 
   def index
     @users = User.all
@@ -12,12 +12,11 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      render :show, status: :created
+      render :show, status: :ok
     else
       render json: @user.errors, status: :unprocessable_entity
     end
   end
-
 
   private
 
