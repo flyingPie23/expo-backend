@@ -69,7 +69,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if resource.persisted?
       render json: {
         status: {code: 200, message: 'Signed up successfully.'},
-        data: UserSerializer.new(current_user).serializable_hash[:data][:attributes]
+        info: {
+          user: UserSerializer.new(current_user).serializable_hash[:data][:attributes],
+          token: request.env['warden-jwt_auth.token']
+        }
       }
     else
       render json: {
