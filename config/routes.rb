@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  devise_scope :user do
+    get 'signed_in', to: 'users/sessions#signed_in?'
+  end
 
   patch 'details', to: 'users#update'
 
